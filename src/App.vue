@@ -18,13 +18,15 @@
       <transition name="fade">
         <router-view></router-view>
       </transition>
+      <transition name="fade">
+        <flash-message class="myCustomClass"></flash-message>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
   name: "app",
   components: {
@@ -42,6 +44,6 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 } */
-
-@import'~bootstrap/dist/css/bootstrap.css'
+@import "~vue-flash-message/dist/vue-flash-message.min.css";
+@import "~bootstrap/dist/css/bootstrap.css";
 </style>

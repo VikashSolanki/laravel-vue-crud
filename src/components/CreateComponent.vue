@@ -40,8 +40,9 @@ export default {
 
       this.axios
         .post(URL, this.post)
-        .then(function(resp) {
-          this.$router.push({name: 'posts'});
+        .then(data => {
+          this.flashSuccess("Post is save successfully");
+          this.$router.push({ name: "posts" });
         })
         .catch(function(error) {
           console.log(error);
