@@ -34,8 +34,10 @@ export default {
       post: {}
     };
   },
+  mounted() {},
   methods: {
     addPost() {
+      let loader = this.$loading.show();
       let URL = "http://127.0.0.1:8000/api/store";
 
       this.axios
@@ -43,6 +45,7 @@ export default {
         .then(data => {
           this.flashSuccess("Post is save successfully");
           this.$router.push({ name: "posts" });
+          loader.hide();
         })
         .catch(function(error) {
           console.log(error);

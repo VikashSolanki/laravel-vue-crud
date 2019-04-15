@@ -13,6 +13,7 @@
     "core-js": "^2.6.5",
     "vue": "^2.6.6",
     "vue-flash-message": "^0.7.2",
+    "vue-loading-overlay": "^3.2.0",
     "vue-router": "^3.0.4"
   },
   "devDependencies": {
