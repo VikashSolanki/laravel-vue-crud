@@ -14,8 +14,8 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Item Name</th>
-          <th>Item Price</th>
+          <th>Item Title</th>
+          <th>Item Body</th>
           <th>Actions</th>
           <th></th>
         </tr>
@@ -68,31 +68,45 @@ export default {
         });
     },
     deletePost(id, index) {
-      let loader = this.$loading.show();
-      let URL = `http://127.0.0.1:8000/api/delete/${id}`;
-      let axios = this.axios;
-      let deletes = this.$delete;
-      let post = this.posts;
-      this.$dialog
-        .confirm("Are you sure you want to delete this post ")
-        .then(function(dialog) {
-          alert("Hello");
-          axios
-            .delete(URL)
-            .then(response => {
-              alert("then");
-              deletes(post, index);
-              this.$snotify.success("Post has been deleted successfully");
-              loader.hide();
-            })
-            .catch(function(error) {
-              this.$snotify.error(error);
-            });
-        })
-        .catch(function(error) {
-          console.log(error);
-          loader.hide();
-        });
+      this.$snotify.confirm(
+        "Are you sure you want to delete this post ?",
+        "Delete Post",
+        {
+          // timeout: 5000,
+          showProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          buttons: [
+            {
+              text: "Yes",
+              action: toast => {
+                let loader = this.$loading.show();
+                let URL = `http://127.0.0.1:8000/api/delete/${id}`;
+                this.axios
+                  .delete(URL)
+                  .then(response => {
+                    this.$delete(this.posts, index);
+                    this.$snotify.success("Post has been deleted successfully");
+                    loader.hide();
+                  })
+                  .catch(function(error) {
+                    this.$snotify.error(error);
+                    loader.hide();
+                  });
+                this.$snotify.remove(toast.id);
+              },
+              bold: false
+            },
+            {
+              text: "No",
+              action: toast => {
+                console.log("Clicked: Later");
+                this.$snotify.remove(toast.id);
+              }
+            }
+          ]
+        }
+      );
     }
   },
   created() {
