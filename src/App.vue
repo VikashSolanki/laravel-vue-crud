@@ -24,7 +24,10 @@
     </div>
   </div>
 </template>
-
+<!-- use the latest release -->
+<script src="https://unpkg.com/vuejs-paginate@latest"></script>
+<!-- or use the specify version -->
+<script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 export default {

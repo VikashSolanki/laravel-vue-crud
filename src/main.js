@@ -12,6 +12,9 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import VuejsDialog from 'vuejs-dialog';
 import 'vuejs-dialog/dist/vuejs-dialog.min.css';
 import Vuelidate from 'vuelidate'
+import Paginate from 'vuejs-paginate'
+Vue.component('paginate', Paginate)
+// Vue.component('paginate', VuejsPaginate)
 
 Vue.use(VuejsDialog);
 Vue.use(Vuelidate);

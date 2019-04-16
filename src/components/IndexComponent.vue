@@ -33,6 +33,13 @@
           </td>
         </tr>
       </tbody>
+      <paginate
+        :pageCount="20"
+        :clickHandler="clickCallback"
+        :prevText="'Prev'"
+        :nextText="'Next'"
+        :containerClass="'pagination'"
+      ></paginate>
     </table>
   </div>
 </template>
@@ -45,6 +52,21 @@ export default {
     };
   },
   methods: {
+    clickCallback(pageNum) {
+      let loader = this.$loading.show();
+      let uri = "http://127.0.0.1:8000/api/index?page=" + pageNum;
+
+      this.axios
+        .get(uri)
+        .then(response => {
+          console.log(response);
+          this.posts = response.data.data.data;
+          loader.hide();
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
     deletePost(id, index) {
       let loader = this.$loading.show();
       let URL = `http://127.0.0.1:8000/api/delete/${id}`;
@@ -74,16 +96,15 @@ export default {
     }
   },
   created() {
-    let loader = this.$loading.show();
-    let uri = "http://127.0.0.1:8000/api/index";
-
-    this.axios
-      .get(uri)
-      .then(response => {
-        this.posts = response.data.data;
-        loader.hide();
-      })
-      .catch(function() {});
+    this.clickCallback(1);
   }
 };
 </script>
+
+
+<style scoped>
+.pagination {
+}
+.page-item {
+}
+</style> 
