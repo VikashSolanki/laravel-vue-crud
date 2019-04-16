@@ -15,12 +15,12 @@
         </ul>
       </nav>
       <br>
+      <vue-snotify></vue-snotify>
       <transition name="fade">
         <router-view></router-view>
       </transition>
-      <transition name="fade">
-        <flash-message class="myCustomClass"></flash-message>
-      </transition>
+      
+      
     </div>
   </div>
 </template>
@@ -44,6 +44,10 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 } */
-@import "~vue-flash-message/dist/vue-flash-message.min.css";
+.snotify-rightTop {
+  margin-top: 100px;
+}
+
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "~vue-snotify/styles/material.css";
 </style>

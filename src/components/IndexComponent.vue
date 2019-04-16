@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>Posts</h1>
-    <flash-message class="myCustomClass"></flash-message>
     <div class="row">
       <div class="col-md-10"></div>
 
@@ -49,15 +48,28 @@ export default {
     deletePost(id, index) {
       let loader = this.$loading.show();
       let URL = `http://127.0.0.1:8000/api/delete/${id}`;
-      this.axios
-        .delete(URL)
-        .then(response => {
-          this.$delete(this.posts, index);
-          this.flashSuccess("Post is delete successfully");
-          loader.hide();
+      let axios = this.axios;
+      let deletes = this.$delete;
+      let post = this.posts;
+      this.$dialog
+        .confirm("Are you sure you want to delete this post ")
+        .then(function(dialog) {
+          alert("Hello");
+          axios
+            .delete(URL)
+            .then(response => {
+              alert("then");
+              deletes(post, index);
+              this.$snotify.success("Post has been deleted successfully");
+              loader.hide();
+            })
+            .catch(function(error) {
+              this.$snotify.error(error);
+            });
         })
         .catch(function(error) {
           console.log(error);
+          loader.hide();
         });
     }
   },

@@ -12,9 +12,11 @@
     "bootstrap-vue": "^2.0.0-rc.18",
     "core-js": "^2.6.5",
     "vue": "^2.6.6",
-    "vue-flash-message": "^0.7.2",
     "vue-loading-overlay": "^3.2.0",
-    "vue-router": "^3.0.4"
+    "vue-router": "^3.0.4",
+    "vue-snotify": "^3.2.1",
+    "vuejs-dialog": "^1.4.0",
+    "vuelidate": "^0.7.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
